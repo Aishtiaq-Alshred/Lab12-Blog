@@ -17,9 +17,15 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @GetMapping("/get")
-    public ResponseEntity getAllUser(@AuthenticationPrincipal User user){
-        return ResponseEntity.status(200).body(authService.getAllUser(user.getId()));
+    @GetMapping("/all-users")
+    public ResponseEntity getUsers(){
+        return ResponseEntity.status(200).body(authService.getAllUsers());
+    }
+
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity getUserById(@PathVariable Integer id){
+        return ResponseEntity.status(200).body(authService.getUser(id));
     }
 
     @PostMapping("/register")

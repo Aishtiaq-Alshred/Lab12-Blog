@@ -17,17 +17,18 @@ public class AuthService {
     private final AuthRepository authRepository;
 
 
-    public List<User> getAllUser(Integer id){
 
-        User user=authRepository.findUserById(id);
-
-        if(user==null){
-
-            throw new ApiException("user not found");
-        }
+    public List<User> getAllUsers(){
         return authRepository.findAll();
     }
 
+    public User getUser(Integer id){
+        User myUser=authRepository.findUserById(id);
+        if (myUser==null){
+            throw new ApiException("User Not Found!");
+        }
+        return myUser;
+    }
 
 
     public void register(User user){
