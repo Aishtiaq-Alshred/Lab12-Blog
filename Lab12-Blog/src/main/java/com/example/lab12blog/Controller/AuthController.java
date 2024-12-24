@@ -28,6 +28,11 @@ public class AuthController {
         return ResponseEntity.status(200).body(authService.getUser(id));
     }
 
+     @GetMapping("/my-user")
+    public ResponseEntity getUserById(@AuthenticationPrincipal User user){
+        return ResponseEntity.status(200).body(authService.getUser(user.getId()));
+    }
+
     @PostMapping("/register")
     public ResponseEntity register(@Valid @RequestBody User user){
         authService.register(user);
